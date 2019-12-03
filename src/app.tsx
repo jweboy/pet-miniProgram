@@ -6,7 +6,8 @@ import Index from './pages/index'
 
 import configStore from './store'
 
-import './app.less'
+import './app.scss'
+import PostItem from './components/post-item'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -50,7 +51,8 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <Index />
+        {/* <Index /> */}
+        <PostItem />
       </Provider>
     )
   }

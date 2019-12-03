@@ -1,0 +1,9 @@
+.share-item {
+  display: flex;
+  padding: 10px;
+  .content {
+    width: 80%;
+    display: inline-flex;
+    flex-direction: column;
+  }
+}
