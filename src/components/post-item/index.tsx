@@ -1,39 +1,53 @@
-import { ClAvatar, ClCard, ClFlex, ClIcon } from "mp-colorui";
-import './index.scss';
+import { ClAvatar, ClCard, ClFlex, ClIcon, ClLayout } from "mp-colorui";
 import { View, Text } from "@tarojs/components";
-// import "mp-colorui/dist/style/components/avatar.scss";
+import './index.scss';
 
 function PostItem() {
+  function handleClick() {
+    Taro.navigateTo({
+      url: '/pages/post/detail'
+    })
+  }
   return (
-    <ClCard>
-      <ClFlex>
-        <View className="flex-sub">
-          <ClAvatar shape="round" size="large" shadow headerArray={[{url: 'https://mp-yys-1255362963.cos.ap-chengdu.myqcloud.com/head/330.jpg'}]}/>
-        </View>
-        <View className="flex-treble">
-          <ClFlex direction="column">
-            <View>
-              <View >
-                <Text>来自</Text>
-                <Text>杭州</Text>
-              </View>
-              <View>1秒前推荐</View>
-            </View>
-            <img src="https://mp-yys-1255362963.cos.ap-chengdu.myqcloud.com/head/330.jpg" />
-            <View>
-              <Text>具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容</Text>
-            </View>
-            <ClIcon iconName="share" size="small" />
-          </ClFlex>
-        </View>
-      </ClFlex>
-      {/* <div className="avatar">
+    <View onClick={handleClick}>
+      <ClCard className="post-item">
+        <ClFlex>
+          <View className="basis-xs">
+            <ClLayout margin="small" marginDirection="right">
+              <ClAvatar
+                shape="round"
+                size="large"
+                shadow
+                headerArray={[{ url: 'https://mp-yys-1255362963.cos.ap-chengdu.myqcloud.com/head/330.jpg' }]}
+              />
+            </ClLayout>
+          </View>
+          <View className="basic-xl">
+            <ClFlex direction="column">
+              <img src="https://mp-yys-1255362963.cos.ap-chengdu.myqcloud.com/head/330.jpg" />
+              <ClLayout paddingDirection="top" padding="small">
+                <Text>具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容</Text>
+              </ClLayout>
+              <ClFlex className="action" direction="row" justify="between" align="center" >
+                <View className="basis-sl">
+                  <ClIcon iconName="share" size="xsmall" color="green" />
+                </View>
+                <View className="basis-xl tags">
+                  <Text className="tag">#杭州</Text>
+                  <Text className="tag">1秒前推荐</Text>
+                </View>
+              </ClFlex>
+            </ClFlex>
+          </View>
+        </ClFlex>
+        {/* <div className="avatar">
 
-      </div>
-      <div className="content">
+        </div>
+        <div className="content">
 
-      </div> */}
-    </ClCard>
+        </div> */}
+      </ClCard>
+    </View>
   )
 }
 

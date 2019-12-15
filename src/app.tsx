@@ -1,13 +1,15 @@
 import '@tarojs/async-await'
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { Component, Config, TabBar } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 
-import Index from './pages/index'
+import Index from './pages/home/index'
 
 import configStore from './store'
 
 import './app.scss'
 import PostItem from './components/post-item'
+import TabBar, { TabBarProps, IProps } from 'mp-colorui/@types/tabBar'
+import { ClTabBar } from 'mp-colorui'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -28,7 +30,10 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/home/index',
+      'pages/post/index',
+      '/pages/post/detail',
+      'pages/center/index',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -37,6 +42,14 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
+
+  tabs = [
+    {
+      badge: true,
+      icon: 'hot',
+      title: '首页',
+    }
+  ]
 
   componentDidMount () {}
 
@@ -48,11 +61,12 @@ class App extends Component {
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
         {/* <Index /> */}
-        <PostItem />
+        {/* <PostItem /> */}
+        {/* <ClTabBar tabs={defaultTabs}/> */}
       </Provider>
     )
   }

@@ -2,12 +2,13 @@ import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { ClButton } from "mp-colorui";
 
 import { add, minus, asyncAdd } from '../../actions/counter'
 
 import './index.less'
 import PostItem from '../../components/post-item';
+import Tabbar from '../../components/tabbar';
+import { ClAnimation } from 'mp-colorui'
 
 // #region 书写注意
 //
@@ -75,9 +76,17 @@ class Index extends Component {
 
   componentDidShow () { }
 
-  componentDidHide () { }
+  componentDidHide() { }
 
-  render () {
+  handleClick() {
+    Taro.navigateTo({
+      url: 'pages/post/detail'
+    })
+  }
+
+  render() {
+
+
     return (
       <View className='index'>
         {/* <Button className='add_btn' onClick={this.props.add}>+</Button>
@@ -86,8 +95,11 @@ class Index extends Component {
         <View><Text>{this.props.counter.num}</Text></View>
         <View><Text>Hello, World</Text></View>
         <ClButton>click me</ClButton> */}
-        <PostItem />
-        <PostItem />
+        {/* <PostItem /> */}
+        <ClAnimation type="fade">
+          <PostItem onClick={this.handleClick} />
+          <Tabbar />
+        </ClAnimation>
       </View>
     )
   }

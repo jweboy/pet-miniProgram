@@ -1,9 +1,14 @@
-.share-item {
-  display: flex;
-  padding: 10px;
-  .content {
-    width: 80%;
-    display: inline-flex;
-    flex-direction: column;
+@import '../../styles/common.scss';
+
+.post-item {
+  .action {
+    width: 100%;
+  }
+  .tags {
+    text-align: right;
+    color: $primary-color;
+    .tag {
+      margin-left: 10px;
+    }
   }
 }
