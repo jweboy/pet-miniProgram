@@ -68,7 +68,7 @@ const config = {
     }
   },
   h5: {
-    publicPath: '/',
+    publicPath: '/pet/',
     staticDirectory: 'static',
     module: {
       postcss: {

@@ -33,7 +33,8 @@ const Tabbar: FC<TabBarProps> = (): ReactElement => {
 
   function handleClick(index: number) {
     const currentTab = defaultTabs[index as string];
-    const url:string = `/pages/${currentTab.key}/index?active=${index}`
+    const url = `/pages/post/index?active=${index}`
+    // const url:string = `/pages/${currentTab.key}/index?active=${index}`
     Taro.navigateTo({ url });
   }
 

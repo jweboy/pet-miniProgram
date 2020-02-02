@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "taro-pet",
 	"description": "taro-pet",
-	"appid": "touristappid",
+	"appid": "wx9bf5585b9cac9dbd",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,

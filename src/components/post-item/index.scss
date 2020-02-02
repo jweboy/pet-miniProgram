@@ -1,6 +1,9 @@
 @import '../../styles/common.scss';
 
 .post-item {
+  .user {
+    width: 100%;
+  }
   .action {
     width: 100%;
   }
@@ -10,5 +13,10 @@
     .tag {
       margin-left: 10px;
     }
+  }
+  .desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient:vertical;
   }
 }

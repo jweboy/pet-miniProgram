@@ -30,9 +30,10 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/post/list/index',
       'pages/home/index',
       'pages/post/index',
-      '/pages/post/detail',
+      'pages/post/detail',
       'pages/center/index',
     ],
     window: {
