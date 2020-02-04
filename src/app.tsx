@@ -30,11 +30,13 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/center/index',
+      // 'components/post-item',
+      'pages/center/ConfirmModal',
       'pages/post/list/index',
       'pages/home/index',
       'pages/post/index',
       'pages/post/detail',
-      'pages/center/index',
     ],
     window: {
       backgroundTextStyle: 'light',

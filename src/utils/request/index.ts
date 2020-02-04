@@ -1,3 +1,9 @@
+/*
+ * @Author: jweboy
+ * @Date: 2020-02-02 20:53:12
+ * @LastEditors  : jweboy
+ * @LastEditTime : 2020-02-08 17:31:08
+ */
 // import * as axios from 'axios';
 // import config from './config';
 import Taro from '@tarojs/taro'
@@ -53,8 +59,8 @@ function request(opts: Taro.request.Option) {
   const { url, method, ...restProps } = opts;
 
   return Taro.request({
-    url: 'http://118.24.155.105:10000/post',
-    method: opts.method || 'GET',
+    url: 'https://easy-mock.com/mock/5e3e7a1d09081a7abce281ef/v1',
+    // method: opts.method || 'GET',
     ...restProps,
   }).catch(err => {
     console.warn(err)
