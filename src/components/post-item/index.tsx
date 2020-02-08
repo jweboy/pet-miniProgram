@@ -4,10 +4,10 @@ import './index.scss';
 import { FC } from "@tarojs/taro";
 
 interface PostItemProps {
-  onClick?: () => void
+  description?: string;
 }
 
-const PostItem:  FC<PostItemProps>  =  () => {
+const PostItem:  FC<PostItemProps>  =  (props) => {
   function handleClick() {
     Taro.navigateTo({
       url: '/pages/post/detail'
@@ -37,7 +37,7 @@ const PostItem:  FC<PostItemProps>  =  () => {
               </ClLayout>
               <img src="https://mp-yys-1255362963.cos.ap-chengdu.myqcloud.com/head/330.jpg" />
               <ClLayout className="desc" paddingDirection="top" padding="small">
-                <Text>具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容具体描述内容</Text>
+                <Text>{props.description}</Text>
               </ClLayout>
               <ClFlex className="action" direction="row" justify="between" align="center" >
                 <View className="basis-sl">

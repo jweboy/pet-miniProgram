@@ -1,21 +1,21 @@
 import { useState, useImperativeHandle } from '@tarojs/taro';
-import { ClModal } from 'mp-colorui'
+import { ClModal } from 'mp-colorui';
 import { ModalBtns } from '../../constants/modal';
 
 const initialVisible: boolean = true;
 
-const ConfirmModal = (props) => {
+const ConfirmModal = props => {
   const [visible, setVisible] = useState(initialVisible);
 
   const actions = [
     {
       text: '取消',
-      color: 'red'
+      color: 'red',
     },
     {
       text: '确定',
-      color: 'blue'
-    }
+      color: 'blue',
+    },
   ];
 
   function open() {
@@ -42,7 +42,7 @@ const ConfirmModal = (props) => {
     <ClModal ref={props.modalRef} show={visible} actions={actions} onClick={handleClick}>
       <span>请先进行授权登录</span>
     </ClModal>
-  )
-}
+  );
+};
 
 export default ConfirmModal;

@@ -2,11 +2,11 @@
  * @Author: jweboy
  * @Date: 2020-02-02 20:53:12
  * @LastEditors  : jweboy
- * @LastEditTime : 2020-02-08 17:31:08
+ * @LastEditTime : 2020-02-08 23:58:50
  */
 // import * as axios from 'axios';
 // import config from './config';
-import Taro from '@tarojs/taro'
+import Taro, { showLoading, hideLoading } from '@tarojs/taro'
 
 // // 参考文章 https://juejin.im/post/59a22e71518825242c422604
 
@@ -57,13 +57,21 @@ import Taro from '@tarojs/taro'
 
 function request(opts: Taro.request.Option) {
   const { url, method, ...restProps } = opts;
+  const BASE_URL = 'https://easy-mock.com/mock/5e3e7a1d09081a7abce281ef/v1'
+
+  showLoading({
+    title:'加载中...'
+  })
 
   return Taro.request({
-    url: 'https://easy-mock.com/mock/5e3e7a1d09081a7abce281ef/v1',
-    // method: opts.method || 'GET',
+    url: BASE_URL + opts.url,
     ...restProps,
-  }).catch(err => {
-    console.warn(err)
+  }).then((data) => {
+    console.log(data)
+    hideLoading();
+    return data;
+  }).catch(() => {
+    hideLoading()
   });
 }
 

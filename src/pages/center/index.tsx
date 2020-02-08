@@ -1,11 +1,12 @@
-import { ClLayout, ClAvatar, ClFlex, ClCard, ClLoading } from "mp-colorui";
-import { useEffect, useRef, createRef, getSetting, useState, getUserInfo, Component } from "@tarojs/taro";
-import { Button, View, Input, Text } from "@tarojs/components";
-import ConfirmModal from "./ConfirmModal";
-import './index.less'
-import { THeaderArray } from "mp-colorui/@types/avatar";
-import PostItem from "../../components/post-item";
-import { getPosts } from "../../api/post";
+import { ClLayout, ClAvatar, ClFlex, ClCard, ClLoading } from 'mp-colorui';
+import { useEffect, getSetting, useState, getUserInfo } from '@tarojs/taro';
+import { Button, View, Text } from '@tarojs/components';
+// import ConfirmModal from './ConfirmModal';
+import { THeaderArray } from 'mp-colorui/@types/avatar';
+import PostItem from '@/components/post-item';
+import { getPosts } from '@/api/post';
+import { PostModel } from '@/typings/post';
+import './index.less';
 // import Tabbar from "../../components/tabbar";
 
 interface UserModel {
@@ -15,11 +16,12 @@ interface UserModel {
 
 const initalVisible: boolean = false;
 const initialUser: UserModel = {};
-
+const initialPosts: PostModel[] = [];
 
 function Center() {
-  const [user, setUser] = useState(initialUser)
-  const [visible, setVisible] = useState(initalVisible)
+  const [user, setUser] = useState(initialUser);
+  const [visible, setVisible] = useState(initalVisible);
+  const [posts, setPosts] = useState(initialPosts);
   const avatar: THeaderArray[] = [{ url: user.avatarUrl, icon: 'people', bgColor: 'light-gray' }];
 
   // const authModalRef = useRef(null);
@@ -45,20 +47,25 @@ function Center() {
   // }, []);
 
   useEffect(() => {
-    getPosts()
-    getSetting().then((resp) => {
-      if (resp.authSetting['scope.userInfo']) {
-        setVisible(false);
-        getUserInfo({
-          success: function(resp) {
-            setUser(resp.userInfo)
-          }
-        })
-      }
-    }).catch(() => {
-      setVisible(true);
-    })
-  })
+    getPosts().then(({ data }) => {
+      setPosts(data.items);
+    });
+
+    getSetting()
+      .then(resp => {
+        if (resp.authSetting['scope.userInfo']) {
+          setVisible(false);
+          getUserInfo({
+            success: function(resp) {
+              setUser(resp.userInfo);
+            },
+          });
+        }
+      })
+      .catch(() => {
+        setVisible(true);
+      });
+  }, []);
 
   function getAuthedUserInfo(data) {
     const { detail } = data;
@@ -68,32 +75,25 @@ function Center() {
   return (
     <ClLayout>
       <View className="message">
-        <ClLoading
-          type="line"
-          show={visible}
-          loadingError
-        />
+        <ClLoading type="line" show={visible} loadingError />
       </View>
       <View className="pet-center bg-gradual-blue">
         <ClFlex className="avatar" justify="center" align="center">
-          <Button className="auth-btn" openType='getUserInfo' onGetUserInfo={getAuthedUserInfo}>
-            <ClAvatar
-              shadow
-              shape="round"
-              size="xlarge"
-              headerArray={avatar}
-            />
+          <Button className="auth-btn" openType="getUserInfo" onGetUserInfo={getAuthedUserInfo}>
+            <ClAvatar shadow shape="round" size="xlarge" headerArray={avatar} />
             <Text className="nickName">{user.nickName}</Text>
           </Button>
         </ClFlex>
       </View>
       <ClLayout>
-        <PostItem />
+        {posts.map(post => (
+          <PostItem key={post.id} description={post.content} />
+        ))}
       </ClLayout>
       {/* <Button ref={authBtnRef} openType='getUserInfo' onGetUserInfo={getUserInfo}>getUserInfo</Button> */}
       {/* <ConfirmModal modalRef={authModalRef} /> */}
     </ClLayout>
-  )
+  );
 }
 
-export default Center
+export default Center;
